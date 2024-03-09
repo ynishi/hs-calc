@@ -1,8 +1,9 @@
 {-# LANGUAGE OverloadedStrings #-}
-module Calc(readXs, (.:)) where
 
-import qualified Data.Text as T
+module Calc (readXs, (.:), avg, avg') where
+
 import Data.String.Conversions
+import Data.Text qualified as T
 
 normalise = T.concat . T.splitOn ","
 
@@ -13,14 +14,13 @@ readXs = map (read . convertString . normalise . convertString) . words
 f .: a = f . readXs $ a
 
 avg :: [Int] -> Float
-avg xs = total / size 
+avg xs = total / size
   where
     total = fromIntegral . sum $ xs
     size = fromIntegral . length $ xs
 
 avg' :: [Int] -> Int
-avg' xs = total `div` size 
+avg' xs = total `div` size
   where
     total = sum xs
     size = length xs
-

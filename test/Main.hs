@@ -22,5 +22,9 @@ unitTests = testGroup "Unit tests"
     testCase "readXs" $
       readXs "1,000 200" @?= [1000, 200],
     testCase ".:" $
-      sum .: "1,000 200" @?= 1200
+      sum .: "1,000 200" @?= 1200,
+    testCase "avg" $
+      avg .: "1,000 2,000" @?= 1500.0,
+    testCase "avg'" $
+      avg' .: "1,000 2,000" @?= 1500
   ]
